@@ -1,0 +1,24 @@
+{
+  "name": "lxu",
+  "version": "0.0.0",
+  "description": "A super lightweight web framework based on node",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/badeggg/lxu.git"
+  },
+  "keywords": [
+    "node",
+    "lxu",
+    "web",
+    "framework"
+  ],
+  "author": "badeggg",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/badeggg/lxu/issues"
+  },
+  "homepage": "https://github.com/badeggg/lxu#readme"
+}
