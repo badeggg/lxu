@@ -5,3 +5,6 @@ node_modules
 #yarn
 yarn.lock
 
+#hack
+hack.*
+
