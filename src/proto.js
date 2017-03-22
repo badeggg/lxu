@@ -3,6 +3,8 @@ const isHttpMethod = require('../lib/isHttpMethod');
 const isPlainFunction = require('../lib/isPlainFunction');
 const isAsyncFunction = require('../lib/isAsyncFunction');
 const isPathStr = require('../lib/isPathStr');
+const isMiddlewareMatch = require('./component/isMiddlewareMatch');
+const http = require('http');
 
 let properties = {
   use: {
@@ -31,19 +33,27 @@ let properties = {
     },
   },
   consume: {
-    value: function(req, res){
-      let fn = this.middlewares.shift();
+    value: async function(req, res){
+      let middleware = this.middlewares.shift();
+      middleware && isMiddlewareMatch(middleware, req) && middleware.fn(req, res, next);
       function next(){
-        let nextFn = this.middlewares.shift();
-        nextFn && nextFn(req, res, next);
+        let nextMiddleware = this.middlewares.shift();
+        nextMiddleware && isMiddlewareMatch(nextMiddleware, req) && nextMiddleware.fn(req, res, next);
       }
-      fn(req, res, next);
     }
   },
   middlewares: {
     value: [],
   },
+  listen: {
+    value: function(port){
+      let server = http.createServer(this.consume);
+      server.listen(port);
+    }
+  },
 
 };
 
 let proto = Object.defineProperties({}, properties);
+
+exports = modules.exports = proto;
