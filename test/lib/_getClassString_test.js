@@ -1,3 +1,6 @@
+const pathBasename = require('path').basename;
+console.log(`${pathBasename(__filename)}`);
+
 const _getClassString = require('../../lib/_getClassString');
 const assert = require('assert');
 

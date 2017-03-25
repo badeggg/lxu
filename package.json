@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/badeggg/lxu/issues"
   },
-  "homepage": "https://github.com/badeggg/lxu#readme"
+  "homepage": "https://github.com/badeggg/lxu#readme",
+  "dependencies": {
+    "methods": "^1.1.2"
+  }
 }

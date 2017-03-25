@@ -1,11 +1,10 @@
-const _getClassString = require('_getClassString');
-const httpMethods = require('httpMethods');
-const isArray = require('isArray');
-const isAsyncFunction = require('isAsyncFunction');
-const isHttpMethod = require('isHttpMethod');
-const isPathStr = require('isPathStr');
-const isPlainFunction = require('isPlainFunction');
-const isPureObject = require('isPureObject');
+const pathBasename = require('path').basename;
+console.log(`${pathBasename(__filename)}`);
 
-//test _getClassString
-
+require('./_getClassString_test.js');
+require('./isArray_test.js');
+require('./isAsyncFunction.js');
+require('./isHttpMethod_test.js');
+require('./isPathStr_test.js');
+require('./isPlainFunction_test.js');
+require('./isPureObject_test.js');
