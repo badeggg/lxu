@@ -14,19 +14,21 @@ let properties = {
      */
     value: function(method, path, fn){
       isPureObject(arguments[0])
-      ?(method = arguments[0]['method'] || 'GET',
-        path = arguments[0]['path'] || '/',
+      ?(method = arguments[0]['method'],
+        path = arguments[0]['path'],
         fn = arguments[0]['fn'])
-      :(fn = arguments[arguments.length-1]
-        arguments.length === 3 && (path = arguments[1] || '/') && (method = argumnets[0] || 'GET'),
-        arguments.length === 2 && (isHttpMethod(arguments[0]) ? method = arguments[0]: path = arguments[0]) || '/'
+      :(fn = arguments[arguments.length-1],
+        arguments.length === 3 && (path = arguments[1]) && (method = arguments[0]),
+        arguments.length === 2 && (isHttpMethod(arguments[0]) ? method = arguments[0]: path = arguments[0])
         );
 
-      if( !isPlainFunction(fn) && !isAsyncFunction(fn) ){
-        throw new Error('app.use expect a middleware which should be a plain function or an async function.');
+      if( !isPlainFunction(fn) && !isAsyncFunction(fn) ){  // to-do: add generator function support
+        throw new Error('[arguments fn]: App.use expect a middleware which should be a plain function or an async function.');
       }
-      if( (path && !isPathStr(path)) || (method && !isHttpMethod(method)) ){
-        throw new Error('Improper arguments to app.use.');
+      path = path || '/';
+      method = method || '_ANY';
+      if( !isPathStr(path) || (method !==  '_ANY' && !isHttpMethod(method)) ){
+        throw new Error('[arguments method/path]: Improper arguments to app.use.');
       }
       this.middlewares.push([method, path, fn]);
 
@@ -56,4 +58,4 @@ let properties = {
 
 let proto = Object.defineProperties({}, properties);
 
-exports = modules.exports = proto;
+exports = module.exports = proto;

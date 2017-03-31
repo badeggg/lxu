@@ -8,7 +8,9 @@ exports = module.exports = function(req){
 
   function getPath(){
     let url = req.url;
-    return url.match(pathReg)[1];
+    let path = url.match(pathReg)[1];
+    path.length > 1 && path[path.length-1] === '/' && (path = path.slice(0, -1));
+    return path;
   }
 
   function getArgs(){

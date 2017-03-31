@@ -1,4 +1,8 @@
 exports = module.exports = function(middleware, req){
-  return middleware[0].toLowerCase() === req.method.toLowerCase();
+  let mvMethod = middleware[0];
+  if(mvMethod === '_ANY'){
+    return true;
+  }
+  return mvMethod.toLowerCase() === req.method.toLowerCase();
 };
 

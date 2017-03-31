@@ -9,6 +9,8 @@ exports = module.exports = function(middleware, req){
     caseSensitive = path.caseSensitive;
     path = path.value;
   }
+  path.length > 1 && path[path.length-1] === '/' && (path = path.slice(0, -1));
+  
   if(caseSensitive){
     return path === reqPath;
   }
