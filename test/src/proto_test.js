@@ -4,6 +4,7 @@ console.log(`${pathBasename(__filename)}`);
 const proto = require('../../src/proto.js');
 const assert = require('assert');
 const isPureObject = require('../../lib/isPureObject.js');
+const http = require('http');
 
 assert( isPureObject(proto) );
 assert( proto.use );
@@ -27,4 +28,58 @@ proto.use('post', '/', async function(){});
 assert( proto.middlewares[2][0] === 'post' );
 assert( proto.middlewares[2][1] === '/' );
 assert( ({}).toString.call( proto.middlewares[2][2] ) === '[object AsyncFunction]' );
+
+proto.use(async function(){});
+assert( proto.middlewares[3][0] === '_ANY' );
+assert( proto.middlewares[3][1] === '/' );
+assert( ({}).toString.call( proto.middlewares[3][2] ) === '[object AsyncFunction]' );
+
+proto.use('/test', async function(){});
+assert( proto.middlewares[4][0] === '_ANY' );
+assert( proto.middlewares[4][1] === '/test' );
+assert( ({}).toString.call( proto.middlewares[4][2] ) === '[object AsyncFunction]' );
+
+proto.use('post', async function(){});
+assert( proto.middlewares[5][0] === 'post' );
+assert( proto.middlewares[5][1] === '/' );
+assert( ({}).toString.call( proto.middlewares[5][2] ) === '[object AsyncFunction]' );
+
+try{
+  proto.use('oo', async function(){});
+}catch(e){
+  assert( e.message.includes('[arguments method/path]') );
+}
+
+try{
+  proto.use('test', async function(){});
+}catch(e){
+  assert( e.message.includes('[arguments method/path]') );
+}
+
+try{
+  proto.use({});
+}catch(e){
+  assert( e.message.includes('[arguments fn]') );
+}
+
+//test consume method
+proto.middlewares.length = 0
+
+proto.use((req, res, next)=>{
+  res.write(`'hi' from 1st middleware`);
+  next();
+});
+proto.use((req, res, next)=>{
+  res.write(`'hi' from 2nd middleware`);
+  next();
+});
+proto.use((req, res, next)=>{
+  res.end();
+});
+
+proto.listen(9898);
+
+http.request();
+
+
 

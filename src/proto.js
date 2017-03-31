@@ -12,14 +12,15 @@ let properties = {
      * Parameters pattern:
      * ([method,][path,]fn) or object-argument
      */
-    value: function(method, path, fn){
+    value: function(){
+      let method, path, fn;
       isPureObject(arguments[0])
       ?(method = arguments[0]['method'],
         path = arguments[0]['path'],
         fn = arguments[0]['fn'])
       :(fn = arguments[arguments.length-1],
-        arguments.length === 3 && (path = arguments[1]) && (method = arguments[0]),
-        arguments.length === 2 && (isHttpMethod(arguments[0]) ? method = arguments[0]: path = arguments[0])
+        arguments.length === 2 && (isHttpMethod(arguments[0]) ? method = arguments[0]: path = arguments[0]),
+        arguments.length === 3 && (path = arguments[1]) && (method = arguments[0])
         );
 
       if( !isPlainFunction(fn) && !isAsyncFunction(fn) ){  // to-do: add generator function support
