@@ -10,6 +10,7 @@ class Server{
     this.__proto__.__proto__ = http.createServer((req, res)=>{
       handle(req, res);
       res.write('hello there.');
+      res.end();
     });
     this.sockets = [];
     this.on('connection', function(socket){
@@ -19,7 +20,7 @@ class Server{
     this.listen(port);
   }
   destroy(){
-    this.close(()=>{console.log('只是想安安静静地写代码');});
+    this.close(()=>{});
     this.sockets.forEach((s)=>{s.destroy()});
   }
 }
@@ -38,10 +39,9 @@ class Client{
       }
     };
     this.options = mixin(options, this.defaultOptions, false);
-    try{
     this.__proto__.__proto__ = this.req = http.request(options, (res) => {});
+    this.req.on('error', (e)=>{});
     this.req.end();
-    }catch(e){}
   }
 }
 

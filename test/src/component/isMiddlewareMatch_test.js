@@ -14,24 +14,24 @@ let mv4 = ['POST', 'test/path', ()=>{}];
 let server = _testConnect.server((req, res)=>{
   assert(isMiddlewareMatch(mv1, req) === true);
   server.destroy();
-});
-_testConnect.client({method: 'get', path: '/'});
+}, 9091);
+_testConnect.client({method: 'get', path: '/', port: 9091});
 
-// server = _testConnect.server((req, res)=>{
-//   assert(isMiddlewareMatch(mv2, req) === true);
-// });
-// _testConnect.client({method: 'Post', path: '/test/path'});
-// server.destroy();
+server = _testConnect.server((req, res)=>{
+  //console.log(isMiddlewareMatch(mv2, req));
+  //assert(isMiddlewareMatch(mv2, req) === true);
+  server.destroy();
+}, 9092);
+_testConnect.client({method: 'post', path: '/test/path', port: 9092});
 
 // server = _testConnect.server((req, res)=>{
 //   assert(isMiddlewareMatch(mv3, req) === true);
-// });
-// _testConnect.client({method: 'get', path: 'test/path'});
-// server.destroy();
+//   server.destroy();
+// }, 9093);
+// _testConnect.client({method: 'get', path: 'test/path', port: 9093});
 
 // server = _testConnect.server((req, res)=>{
 //   assert(isMiddlewareMatch(mv4, req) === true);
-// });
-// _testConnect.client({method: 'post', path: '/test/path/'});
-// server.destroy();
-// console.log('lll');
+//   server.destroy();
+// }, 9094);
+// _testConnect.client({method: 'post', path: '/test/path/', port: 9094});
