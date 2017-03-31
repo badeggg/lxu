@@ -1,4 +1,4 @@
-const isMethodMatch = require('/isMethodMatch');
+const isMethodMatch = require('./isMethodMatch');
 const isPathMatch = require('./isPathMatch');
 
 exports = module.exports = function(middleware, req){
