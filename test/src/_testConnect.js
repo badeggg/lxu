@@ -7,20 +7,21 @@ const mixin = require('merge-descriptors');
 
 class Server{
   constructor(handle, port){
-    this.__proto__.__proto__ = http.createServer((req, res)=>{
-      handle(req, res);
+    this._s = http.createServer((req, res)=>{
       res.write('hello there.');
       res.end();
+      handle(req, res);
     });
     this.sockets = [];
-    this.on('connection', function(socket){
-      this.sockets.push(socket);
+    let that = this;
+    this._s.on('connection', function(socket){
+      that.sockets.push(socket);
     });
     port = port || 9090;
-    this.listen(port);
+    this._s.listen(port);
   }
   destroy(){
-    this.close(()=>{});
+    this._s.close(()=>{});
     this.sockets.forEach((s)=>{s.destroy()});
   }
 }
@@ -39,8 +40,14 @@ class Client{
       }
     };
     this.options = mixin(options, this.defaultOptions, false);
-    this.__proto__.__proto__ = this.req = http.request(options, (res) => {});
-    this.req.on('error', (e)=>{});
+    this.req = http.request(options, (res) => {
+      let str = '';
+      res.on('data', (chunk)=>{
+        str += chunk;
+      });
+      //res.on('end', ()=>console.log(str));
+    });
+    this.req.on('error', (e)=>{console.log(e.message);});
     this.req.end();
   }
 }
