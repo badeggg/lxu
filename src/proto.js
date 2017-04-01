@@ -37,21 +37,27 @@ let properties = {
   },
   consume: {
     value: async function(req, res){
-      let middleware = this.middlewares.shift();
-      middleware && isMiddlewareMatch(middleware, req) && middleware.fn(req, res, next);
+      let nextIndex = 0;
+      let middleware = proto.middlewares[nextIndex++];
+      middleware && isMiddlewareMatch(middleware, req) && middleware[2](req, res, next);
       function next(){
-        let nextMiddleware = this.middlewares.shift();
-        nextMiddleware && isMiddlewareMatch(nextMiddleware, req) && nextMiddleware.fn(req, res, next);
+        let nextMiddleware = proto.middlewares[nextIndex++];
+        nextMiddleware && isMiddlewareMatch(nextMiddleware, req) && nextMiddleware[2](req, res, next);
       }
     }
   },
   middlewares: {
+    /**
+     * middleware: [method, path, fn]
+     * A middleware example ['get', '/', ()=>{}]
+     */
     value: [],
   },
   listen: {
     value: function(port){
       let server = http.createServer(this.consume);
       server.listen(port);
+      return server;
     }
   },
 

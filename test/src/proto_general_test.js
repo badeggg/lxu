@@ -5,6 +5,7 @@ const proto = require('../../src/proto.js');
 const assert = require('assert');
 const isPureObject = require('../../lib/isPureObject.js');
 const http = require('http');
+const fork = require('child_process').fork;
 
 assert( isPureObject(proto) );
 assert( proto.use );
@@ -13,7 +14,9 @@ assert( proto.middlewares );
 assert( proto.listen );
 
 
-//test [use] method
+//Test <use> method
+console.log(`Test <use> method`);
+
 proto.use('get', '/', ()=>{});
 assert( proto.middlewares[0][0] === 'get' );
 assert( proto.middlewares[0][1] === '/' );
@@ -62,24 +65,7 @@ try{
   assert( e.message.includes('[arguments fn]') );
 }
 
-//test consume method
-proto.middlewares.length = 0
-
-proto.use((req, res, next)=>{
-  res.write(`'hi' from 1st middleware`);
-  next();
-});
-proto.use((req, res, next)=>{
-  res.write(`'hi' from 2nd middleware`);
-  next();
-});
-proto.use((req, res, next)=>{
-  res.end();
-});
-
-proto.listen(9898);
-
-http.request();
-
-
+//Fork other test.
+fork('./proto_consume_general_test.js');
+fork('./proto_consume_async_test.js');
 
