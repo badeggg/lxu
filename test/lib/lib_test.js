@@ -8,3 +8,5 @@ require('./isHttpMethod_test.js');
 require('./isPathStr_test.js');
 require('./isPlainFunction_test.js');
 require('./isPureObject_test.js');
+require('./isGeneratorFunction_test.js');
+require('./genTransAsync_test.js');

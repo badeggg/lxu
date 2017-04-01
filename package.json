@@ -1,9 +1,9 @@
 {
   "name": "lxu",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A super lightweight web framework based on node",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node ./test/main.js"
   },
   "repository": {
     "type": "git",

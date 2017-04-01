@@ -4,6 +4,8 @@ const isPlainFunction = require('../lib/isPlainFunction');
 const isAsyncFunction = require('../lib/isAsyncFunction');
 const isPathStr = require('../lib/isPathStr');
 const isMiddlewareMatch = require('./component/isMiddlewareMatch');
+const genTransAsync = require('../lib/genTransAsync.js');
+const isGeneratorFunction = require('../lib/isGeneratorFunction.js');
 const http = require('http');
 
 let properties = {
@@ -23,13 +25,16 @@ let properties = {
         arguments.length === 3 && (path = arguments[1]) && (method = arguments[0])
         );
 
-      if( !isPlainFunction(fn) && !isAsyncFunction(fn) ){  // to-do: add generator function support
+      if( !isPlainFunction(fn) && !isAsyncFunction(fn) && !isGeneratorFunction(fn) ){
         throw new Error('[arguments fn]: App.use expect a middleware which should be a plain function or an async function.');
       }
       path = path || '/';
       method = method || '_ANY';
       if( !isPathStr(path) || (method !==  '_ANY' && !isHttpMethod(method)) ){
         throw new Error('[arguments method/path]: Improper arguments to app.use.');
+      }
+      if( isGeneratorFunction(fn) ){
+        fn = genTransAsync(fn);
       }
       this.middlewares.push([method, path, fn]);
 

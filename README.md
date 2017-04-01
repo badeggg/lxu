@@ -1,2 +1,2 @@
 # lxu
-In progress...
+Basicly done.

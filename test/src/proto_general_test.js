@@ -66,6 +66,7 @@ try{
 }
 
 //Fork other test.
-fork('./proto_consume_general_test.js');
-fork('./proto_consume_async_test.js');
+fork(`${__dirname}/proto_consume_general_test.js`);
+fork(`${__dirname}/proto_consume_async_test.js`);
+fork(`${__dirname}/proto_consume_generator_test.js`);
 

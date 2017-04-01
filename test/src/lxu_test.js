@@ -13,8 +13,4 @@ assert( app.consume );
 assert( app.middlewares );
 assert( app.listen );
 
-app.use((req, res)=>{
-  res.end('Hello there.');
-});
-app.listen(9898);
 
