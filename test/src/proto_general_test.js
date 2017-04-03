@@ -34,7 +34,7 @@ assert( ({}).toString.call( proto.middlewares[2][2] ) === '[object AsyncFunction
 
 proto.use(async function(){});
 assert( proto.middlewares[3][0] === '_ANY' );
-assert( proto.middlewares[3][1] === '/' );
+assert( proto.middlewares[3][1] === 'reg.' );
 assert( ({}).toString.call( proto.middlewares[3][2] ) === '[object AsyncFunction]' );
 
 proto.use('/test', async function(){});
@@ -44,7 +44,7 @@ assert( ({}).toString.call( proto.middlewares[4][2] ) === '[object AsyncFunction
 
 proto.use('post', async function(){});
 assert( proto.middlewares[5][0] === 'post' );
-assert( proto.middlewares[5][1] === '/' );
+assert( proto.middlewares[5][1] === 'reg.' );
 assert( ({}).toString.call( proto.middlewares[5][2] ) === '[object AsyncFunction]' );
 
 try{
@@ -65,8 +65,4 @@ try{
   assert( e.message.includes('[arguments fn]') );
 }
 
-//Fork other test.
-fork(`${__dirname}/proto_consume_general_test.js`);
-fork(`${__dirname}/proto_consume_async_test.js`);
-fork(`${__dirname}/proto_consume_generator_test.js`);
 

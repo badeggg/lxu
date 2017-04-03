@@ -45,7 +45,6 @@ class Client{
       res.on('data', (chunk)=>{
         str += chunk;
       });
-      //res.on('end', ()=>console.log(str));
     });
     this.req.on('error', (e)=>{console.log(e.message);});
     this.req.end();

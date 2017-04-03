@@ -2,7 +2,7 @@ const isPureObject = require('../lib/isPureObject');
 const isHttpMethod = require('../lib/isHttpMethod');
 const isPlainFunction = require('../lib/isPlainFunction');
 const isAsyncFunction = require('../lib/isAsyncFunction');
-const isPathStr = require('../lib/isPathStr');
+const isLxuPath = require('./component/isLxuPath.js');
 const isMiddlewareMatch = require('./component/isMiddlewareMatch');
 const genTransAsync = require('../lib/genTransAsync.js');
 const isGeneratorFunction = require('../lib/isGeneratorFunction.js');
@@ -17,20 +17,20 @@ let properties = {
     value: function(){
       let method, path, fn;
       isPureObject(arguments[0])
-      ?(method = arguments[0]['method'],
-        path = arguments[0]['path'],
-        fn = arguments[0]['fn'])
-      :(fn = arguments[arguments.length-1],
-        arguments.length === 2 && (isHttpMethod(arguments[0]) ? method = arguments[0]: path = arguments[0]),
-        arguments.length === 3 && (path = arguments[1]) && (method = arguments[0])
-        );
+        ?(method = arguments[0]['method'],
+          path = arguments[0]['path'],
+          fn = arguments[0]['fn'])
+        :(fn = arguments[arguments.length-1],
+          arguments.length === 2 && (isHttpMethod(arguments[0]) ? method = arguments[0]: path = arguments[0]),
+          arguments.length === 3 && (path = arguments[1]) && (method = arguments[0])
+          );
 
       if( !isPlainFunction(fn) && !isAsyncFunction(fn) && !isGeneratorFunction(fn) ){
         throw new Error('[arguments fn]: App.use expect a middleware which should be a plain function or an async function.');
       }
-      path = path || '/';
+      path = path || 'reg.';
       method = method || '_ANY';
-      if( !isPathStr(path) || (method !==  '_ANY' && !isHttpMethod(method)) ){
+      if( !isLxuPath(path) || (method !==  '_ANY' && !isHttpMethod(method)) ){
         throw new Error('[arguments method/path]: Improper arguments to app.use.');
       }
       if( isGeneratorFunction(fn) ){
