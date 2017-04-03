@@ -22,7 +22,8 @@
   },
   "homepage": "https://github.com/badeggg/lxu#readme",
   "dependencies": {
-    "methods": "^1.1.2"
+    "methods": "^1.1.2",
+    "serve-static": "^1.12.1"
   },
   "recommendDependencies": {
     "pug": "^2.0.0-beta11",

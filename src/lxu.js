@@ -11,3 +11,5 @@ function createApplication(){
   app.__proto__ = proto;
   return app;
 }
+
+exports.static = require('serve-static');
