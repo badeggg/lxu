@@ -1,2 +1,3 @@
 # lxu
 @version 0.0.1 Basic core feature is done.
+There are thousands of bugs. Waiting....
