@@ -1,3 +1,3 @@
 # lxu
-@version 0.0.1 Basic core feature is done.<br>
-Fatal bugs. Waiting....
+@version 0.0.2 Basic core feature is done.<br>
+
