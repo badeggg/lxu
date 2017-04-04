@@ -1,14 +1,17 @@
 'use strict';
 
 const proto = require('./proto');
+const mixin = require('merge-descriptors');
 
 exports = module.exports = createApplication;
 
 function createApplication(){
-  let app = function(req, res, next){ //Todo: lxu should can be a middleware for other web framework such as express
-
+  async function app(req, res, next){
+    await app.consume(req, res);
+    next && next();
+    return 0;
   };
-  app.__proto__ = proto;
+  mixin(app, proto);
   return app;
 }
 

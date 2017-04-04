@@ -43,18 +43,16 @@ let properties = {
   consume: {
     value: async function(req, res){
       let nextIndex = 0;
-      let middleware = proto.middlewares[nextIndex++];
-      middleware && isMiddlewareMatch(middleware, req)
-        ? middleware[2](req, res, next)
-        : next();
-      function next(){
+      return await next();
+      async function next(){
         if(nextIndex >= proto.middlewares.length){
           return 0;
         }
         let nextMiddleware = proto.middlewares[nextIndex++];
         nextMiddleware && isMiddlewareMatch(nextMiddleware, req)
-          ? nextMiddleware[2](req, res, next)
-          : next();
+          ? await nextMiddleware[2](req, res, next)
+          : await next();
+        return 0;
       }
     }
   },
