@@ -10,7 +10,6 @@ const http = require('http');
 //basic feature test
 console.log(`Test <consume> basic feature`);
 
-process.kill(process.pid);
 proto.middlewares.length = 0;
 
 proto.use((req, res, next)=>{
@@ -18,7 +17,15 @@ proto.use((req, res, next)=>{
   next();
 });
 proto.use((req, res, next)=>{
-  res.write(`'hi' from 2nd middleware`);
+  res.write(`'hi' from 2nd middleware\n`);
+  next();
+});
+proto.use('post', (req, res, next)=>{
+  res.write(`'hi' from 3rd middleware\n`);
+  next();
+});
+proto.use((req, res, next)=>{
+  res.write(`msg from 4th middleware, 3rd middleware was skipped.\n`);
   next();
 });
 proto.use((req, res, next)=>{
@@ -44,7 +51,7 @@ let clientReq = http.request({port: 9898}, (res)=>{
     body += chunk; // I can't understand what's happening in this line of code.
   });
   res.on('end', ()=>{
-    assert(body === `'hi' from 1st middleware\n'hi' from 2nd middleware`);
+    assert(body === `'hi' from 1st middleware\n'hi' from 2nd middleware\nmsg from 4th middleware, 3rd middleware was skipped.\n`);
   });
 });
 

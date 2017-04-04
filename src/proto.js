@@ -48,10 +48,10 @@ let properties = {
         ? middleware[2](req, res, next)
         : next();
       function next(){
-        if(nextIndex++ >= proto.middlewares.length){
+        if(nextIndex >= proto.middlewares.length){
           return 0;
         }
-        let nextMiddleware = proto.middlewares[nextIndex];
+        let nextMiddleware = proto.middlewares[nextIndex++];
         nextMiddleware && isMiddlewareMatch(nextMiddleware, req)
           ? nextMiddleware[2](req, res, next)
           : next();

@@ -52,7 +52,6 @@ let clientReq = http.request({port: 9900}, (res)=>{
     body += chunk;
   });
   res.on('end', ()=>{
-    console.log(body);
     assert(body === `: 1 second later value: 2 second later value`);
   });
 });
