@@ -44,10 +44,17 @@ let properties = {
     value: async function(req, res){
       let nextIndex = 0;
       let middleware = proto.middlewares[nextIndex++];
-      middleware && isMiddlewareMatch(middleware, req) && middleware[2](req, res, next);
+      middleware && isMiddlewareMatch(middleware, req)
+        ? middleware[2](req, res, next)
+        : next();
       function next(){
-        let nextMiddleware = proto.middlewares[nextIndex++];
-        nextMiddleware && isMiddlewareMatch(nextMiddleware, req) && nextMiddleware[2](req, res, next);
+        if(nextIndex++ >= proto.middlewares.length){
+          return 0;
+        }
+        let nextMiddleware = proto.middlewares[nextIndex];
+        nextMiddleware && isMiddlewareMatch(nextMiddleware, req)
+          ? nextMiddleware[2](req, res, next)
+          : next();
       }
     }
   },
