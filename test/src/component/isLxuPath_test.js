@@ -14,7 +14,3 @@ assert(isLxuPath({}) === false);
 assert(isLxuPath({value: 23}) === false);
 assert(isLxuPath('sdf') === false);
 assert(isLxuPath('ref') === false);
-
-
-
-

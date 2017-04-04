@@ -14,21 +14,22 @@ assert( app.consume );
 assert( app.middlewares );
 assert( app.listen );
 
+app.use(lxu.static('./component/'));
 app.use((req, res, next)=>{
-  console.log('Hello there.');
+  console.log('ere.');
+  res.end('Hello there.');
   next();
 });
-app.use(lxu.static('./component/'));
 
 let server = app.listen(8000);
 
-http.request({port: 8000, path: '/isLxuPath_test.js'}, (res)=>{
+let clientReg = http.request({port: 8000, path: '/isLxuPath_test.js'}, (res)=>{
   let body = '';
   res.on('data', (chunk)=>{
     body += chunk;
   });
   res.on('end', ()=>{
-    console.log(body);
+    server.close();
   });
   res.on('error', (e)=>{
     throw e;
