@@ -3,3 +3,6 @@ Tools for test:
 
 Tools for license:
   Auto add license message prefix in every src file
+
+Tools for version update:
+  Update version message
