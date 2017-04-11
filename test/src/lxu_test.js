@@ -16,7 +16,6 @@ assert( app.listen );
 
 app.use(lxu.static('./component/'));
 app.use((req, res, next)=>{
-  console.log('ere.');
   res.end('Hello there.');
   next();
 });

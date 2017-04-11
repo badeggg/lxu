@@ -46,16 +46,8 @@ for line in rulefile_f:
         include_list.append( join(root, file) )
 
 #add license prefix text
-#for file_path in include_list:
-file_path = include_list[0]
-if open(file_path, 'r').readline().find(license_hash_symbol) < 0:
-  with open(file_path, 'r') as original: data = original.read()
-  with open(file_path, 'w') as modified: modified.write(license_text + '\n' + data)
-
-#continue here. prefix it to all files
-
-
-
-
-
+for file_path in include_list:
+  if open(file_path, 'r').readline().find(license_hash_symbol) < 0:
+    with open(file_path, 'r') as original: data = original.read()
+    with open(file_path, 'w') as modified: modified.write(license_text + '\n' + data)
 
