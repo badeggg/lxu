@@ -3,14 +3,14 @@
 # prefix in that file.
 # 
 # 'prefix_license' tool calculate licensing-file list by
-# 'include' deduct 'not include'.
+# 'include' deduct 'not include'. todo: deduction
 #
 # Lines start with '#' symbol will be treat as comments (such as these) in this file.
 # @badeggg @2017-4-10
 
 
 #include
-include /lib
-include /src
+include lib
+include src
 
 #not include
