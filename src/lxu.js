@@ -1,14 +1,23 @@
+/*!{7006d272cd4a48ad521450def8ae4f4066ef2046}
+ * lxu
+ * MIT Licensed
+ * @badeggg   @2017-04-11 21:25:03.254840
+ */
+
 'use strict';
 
 const proto = require('./proto');
+const mixin = require('merge-descriptors');
 
 exports = module.exports = createApplication;
 
 function createApplication(){
-  let app = function(req, res, next){ //Todo: lxu should can be a middleware for other web framework such as express
-
+  async function app(req, res, next){
+    await app.consume(req, res);
+    next && next();
+    return 0;
   };
-  app.__proto__ = proto;
+  mixin(app, proto);
   return app;
 }
 

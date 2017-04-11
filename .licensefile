@@ -1,0 +1,16 @@
+# 'prefix_license' tool will parse this file to determine
+# files shoule be licensed, which means add license message
+# prefix in that file.
+# 
+# 'prefix_license' tool calculate licensing-file list by
+# 'include' deduct 'not include'. todo: deduction
+#
+# Lines start with '#' symbol will be treat as comments (such as these) in this file.
+# @badeggg @2017-4-10
+
+
+#include
+include lib
+include src
+
+#not include

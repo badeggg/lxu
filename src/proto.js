@@ -1,3 +1,9 @@
+/*!{7006d272cd4a48ad521450def8ae4f4066ef2046}
+ * lxu
+ * MIT Licensed
+ * @badeggg   @2017-04-11 21:25:03.254840
+ */
+
 const isPureObject = require('../lib/isPureObject');
 const isHttpMethod = require('../lib/isHttpMethod');
 const isPlainFunction = require('../lib/isPlainFunction');
@@ -43,18 +49,16 @@ let properties = {
   consume: {
     value: async function(req, res){
       let nextIndex = 0;
-      let middleware = proto.middlewares[nextIndex++];
-      middleware && isMiddlewareMatch(middleware, req)
-        ? middleware[2](req, res, next)
-        : next();
-      function next(){
+      return await next();
+      async function next(){
         if(nextIndex >= proto.middlewares.length){
           return 0;
         }
         let nextMiddleware = proto.middlewares[nextIndex++];
         nextMiddleware && isMiddlewareMatch(nextMiddleware, req)
-          ? nextMiddleware[2](req, res, next)
-          : next();
+          ? await nextMiddleware[2](req, res, next)
+          : await next();
+        return 0;
       }
     }
   },

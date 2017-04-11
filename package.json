@@ -1,6 +1,6 @@
 {
   "name": "lxu",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A super lightweight web framework based on node",
   "scripts": {
     "test": "node ./test/main.js"
@@ -16,12 +16,13 @@
     "framework"
   ],
   "author": "badeggg",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/badeggg/lxu/issues"
   },
   "homepage": "https://github.com/badeggg/lxu#readme",
   "dependencies": {
+    "merge-descriptors": "^1.0.1",
     "methods": "^1.1.2",
     "serve-static": "^1.12.1"
   },
@@ -30,6 +31,7 @@
     "lxu-static": ""
   },
   "devDependencies": {
+    "express": "^4.15.2",
     "merge-descriptors": "^1.0.1"
   }
 }
