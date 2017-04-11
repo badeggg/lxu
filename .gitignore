@@ -8,4 +8,6 @@ yarn.lock
 #hack
 hack*.*
 
+#python compiled cached files
+*.pyc
 

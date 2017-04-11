@@ -1,0 +1,11 @@
+# License prefix template, [author] will be repalced with
+# 'author' such as 'badeggg', [date] will be repalced with
+# datetime.now().
+# 
+# Lines start with '#' symbol are comments in this file.
+# @badeggg @2017-4-10
+/*!{[license prefix text hash v_2017-4-11]}
+ * lxu
+ * MIT Licensed
+ * @[author]   @[date]
+ */
