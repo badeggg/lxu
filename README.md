@@ -15,12 +15,14 @@ A web framework based on nodejs.<br>
 
 ## Drawback
 + Still in initial phase, only use it in some *non-serious* situation *for now*
-+ Don't accept pull requests *for now* 
++ Lxu doesn't accept pull requests *for now* 
 
 ## Usage
-+ install
-    `npm install lxu`
-+ examples<br>
++ install :<br>
+  `npm install lxu`
++ require :<br>
+  node v7.6.0 or higher for async function support
++ examples :<br>
   - Start a super simple http server
     ~~~
     //Start a super simple http server
