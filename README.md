@@ -14,7 +14,7 @@ A web framework based on nodejs.<br>
 + Generator simulate async/await (support but not recommend) ✔
 
 ## Drawback
-+ Still in initial phase, only use it in some *non-serious* situation *for now*
++ Still in initial phase, you may only use it in some *non-serious* situation *for now*
 + Lxu doesn't accept pull requests *for now* 
 
 ## Usage
@@ -53,7 +53,7 @@ A web framework based on nodejs.<br>
       next();
     });
     app.use(async function(req, res, next){
-      res.wite('End of response.\n');
+      res.write('End of response.\n');
       res.end();
     });
     app.listen(3002);
@@ -69,16 +69,17 @@ A web framework based on nodejs.<br>
       next();
     });
     app.use(function(req, res, next){
-      res.wite('End of response.\n');
+      res.write('End of response.\n');
       res.end();
       next();
     });
     app.listen(3003);
     ~~~
-  - As a middleware for other web nodejs web framework
+  - As a middleware for other nodejs web framework
     ~~~
-    //As a middleware for other web nodejs web framework
-    let lxulet lxu = require('lxu');
+    //As a middleware for other nodejs web framework
+    let express = require('express');
+    let lxu = require('lxu');
     let app = lxu();
     app.use((req, res, next)=>{
       res.write('Hello there.\n');
