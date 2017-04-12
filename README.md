@@ -1,7 +1,7 @@
 # lxu
 
 A web framework based on nodejs.<br>
-@version 0.0.3 Basic core feature is done.
+**@version 0.0.3** Basic core feature is done.
 
 ## Philosophy
 + Provides super core middlerware handling and static file service and basicly nothing else
