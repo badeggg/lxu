@@ -10,8 +10,8 @@ A web framework based on nodejs.<br>
 ## Feature
 + Focuse on middleware handling ✔
 + Async/await ✔
-+ Generator simulate async/await (support but not recommend) ✔
 + As a middlerware for other nodejs web framework such as express ✔
++ Generator simulate async/await (support but not recommend) ✔
 
 ## Drawback
 + Still in initial phase, only use it in some *non-serious* situation *for now*
@@ -56,7 +56,7 @@ A web framework based on nodejs.<br>
     });
     app.listen(3002);
     ~~~
-  - Use generator simulate async
+  - Use generator simulate async [Link for generator simulate async](https://github.com/badeggg/blog/blob/master/BLOG%231%20Async%20your%20js%20code%20with%20generator%20function/article.md)
     ~~~
     //Use generator simulate async
     let lxu = require('lxu');
