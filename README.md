@@ -14,8 +14,8 @@ A web framework based on nodejs.<br>
 + Generator simulate async/await (support but not recommend) ✔
 
 ## Drawback
-+ Still in initial phase, you may only use it in some *non-serious* situation *for now*
-+ Lxu doesn't accept pull requests *for now* 
++ Still in initial phase, *for now* you may only use it in some *non-serious* situation
++ *For now* lxu doesn't accept pull requests 
 
 ## Usage
 + install :<br>
