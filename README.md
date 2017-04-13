@@ -21,7 +21,7 @@ A web framework based on nodejs.<br>
 + install :<br>
   `npm install lxu`
 + require :<br>
-  node v7.6.0 or higher for async function support
+  node **v7.6.0** or higher for async function support
 + examples :<br>
   - Start a super simple http server
     ~~~
