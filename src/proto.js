@@ -70,9 +70,9 @@ let properties = {
     value: [],
   },
   listen: {
-    value: function(port){
+    value: function(){
       let server = http.createServer(this.consume);
-      server.listen(port);
+      server.listen.apply(server, arguments);
       return server;
     }
   },

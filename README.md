@@ -1,7 +1,7 @@
 # lxu
 
 A web framework based on nodejs.<br>
-**@version 0.0.3** Basic core feature is done.
+**@version 0.0.4** Basic core feature is done.
 
 ## Philosophy
 + Provides super core middlerware handling and static file service and basicly nothing else
@@ -28,10 +28,10 @@ A web framework based on nodejs.<br>
     //Start a super simple http server
     let lxu = require('lxu');
     let app = lxu();
-    app.use(req, res, next){
+    app.use((req, res, next)=>{
       res.end('Hello there.');
-    };
-    app.listen(3000);
+    });
+    app.listen(3000, ()=>{console.log('Listening on 3000...')});
     ~~~
   - Start a http server with static file serve
     ~~~
@@ -39,7 +39,7 @@ A web framework based on nodejs.<br>
     let lxu = require('lxu');
     let app = lxu();
     app.use(lxu.static('./static_file_dir'));
-    app.listen(3001);
+    let server = app.listen(3001, ()=>{console.log(`Listening on ${server.address().port}...`);});
     ~~~
   - Use async middlware
     ~~~
@@ -91,7 +91,7 @@ A web framework based on nodejs.<br>
       res.end('After lxu middlewares.\n');
       next();
     });
-    expressApp.listen(3004);
+    let server = expressApp.listen(3004, ()=>{console.log(`Listening on ${server.address().port}...`)});
 
     ~~~
 

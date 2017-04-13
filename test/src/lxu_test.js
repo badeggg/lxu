@@ -20,7 +20,9 @@ app.use((req, res, next)=>{
   next();
 });
 
-let server = app.listen(8000);
+let server = app.listen(8000, ()=>{
+  console.log(`Listening on ${server.address().port}...`);
+});
 
 let clientReg = http.request({port: 8000, path: '/isLxuPath_test.js'}, (res)=>{
   let body = '';
