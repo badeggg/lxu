@@ -1,4 +1,4 @@
-# lxu
+# lxu (I am afraid this is `not` a usefule package)
 
 A web framework based on nodejs.<br>
 **@version 0.0.5** Basic core feature is done.

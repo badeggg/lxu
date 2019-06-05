@@ -1,6 +1,6 @@
 {
   "name": "lxu",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A super lightweight web framework based on node",
   "scripts": {
     "test": "node ./test/main.js"
